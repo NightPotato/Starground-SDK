@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1aqmtvhdkjo7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvss6"]
+bg_color = Color(0.144063, 0.144063, 0.144062, 1)
+border_color = Color(0.309903, 0.649643, 0.661994, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dvss6")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Placeholder Text"

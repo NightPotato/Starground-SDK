@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bdr1psv0y81kp"]
+
+[node name="ToolsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_vertical_guides_ = [1226.0]
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="New Mod" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/New Mod"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+text = "Create Mod from Template"
