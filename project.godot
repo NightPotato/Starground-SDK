@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Starground-Mod-tools"
+config/name="Starground-SDK"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://addons/starground-sdk/sprites/starground_icon.png"
 
 [dotnet]
 
