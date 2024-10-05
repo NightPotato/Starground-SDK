@@ -7,14 +7,14 @@ assignees: ''
 
 ---
 
-Why should this functionality exist?
+**Why should this functionality exist?**
 explain why it should be added.
 
-What usage does this functionality provide?
+**What usage does this functionality provide?**
 Give us a usage of the functionality.
 
-Is this functionality possible by other methods?
+**Is this functionality possible by other methods?**
 Yes, No? Explain how if yes.
 
-Addition Context or Notes:
+**Addition Context or Notes:**
 Got more to add? Add it here!
