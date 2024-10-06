@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-./pd_test_mod
 .vscode/
+pd_test_mod/

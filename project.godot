@@ -16,7 +16,7 @@ config/icon="res://addons/starground-sdk/sprites/starground_icon.png"
 
 [autoload]
 
-CreateModUtils="*res://addons/starground-sdk/scripts/create_mod_logic.gd"
+CreateModUtils="res://addons/starground-sdk/scripts/create_mod_logic.gd"
 
 [dotnet]
 
