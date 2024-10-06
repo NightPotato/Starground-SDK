@@ -1,26 +1,36 @@
-[gd_scene format=3 uid="uid://bdr1psv0y81kp"]
+[gd_scene load_steps=3 format=3 uid="uid://bdr1psv0y81kp"]
 
-[node name="ToolsPanel" type="Control"]
-layout_mode = 3
+[ext_resource type="PackedScene" uid="uid://bsmpwtn6boper" path="res://addons/starground-sdk/components/directory/directory.tscn" id="1_2k78l"]
+[ext_resource type="Script" path="res://addons/starground-sdk/interfaces/tools_panel.gd" id="1_ws62m"]
+
+[node name="ToolsPanel" type="MarginContainer" node_paths=PackedStringArray("ModNameInput", "ModIDInput", "AuthorInput", "EntryScriptInput", "DescriptionInput", "ModSelectDropdown", "OutputDirectory", "MoveCheckBox", "GameModsDirectory")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_ws62m")
+ModNameInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/ModNameInput")
+ModIDInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/ModIDInput")
+AuthorInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/AuthorInput")
+EntryScriptInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/EntryScriptInput")
+DescriptionInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/DescriptionInput")
+ModSelectDropdown = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/ModSelectDropdown")
+OutputDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/OutputDirectory")
+MoveCheckBox = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/MoveCheckBox")
+GameModsDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/GameModsDirectory")
 metadata/_edit_vertical_guides_ = [1226.0]
 
-[node name="TabContainer" type="TabContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 250.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+tab_alignment = 1
 current_tab = 0
 
-[node name="New Mod" type="MarginContainer" parent="TabContainer"]
+[node name="New Mod" type="MarginContainer" parent="MarginContainer/TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
@@ -28,11 +38,73 @@ theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/New Mod"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/New Mod"]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 50
+theme_override_constants/separation = 4
 
-[node name="Button" type="Button" parent="TabContainer/New Mod/VBoxContainer"]
+[node name="ModNameInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
 layout_mode = 2
+placeholder_text = "Mod Name"
+alignment = 1
+
+[node name="ModIDInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Mod ID"
+alignment = 1
+
+[node name="AuthorInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Author"
+alignment = 1
+
+[node name="EntryScriptInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Entry Script Location"
+alignment = 1
+
+[node name="DescriptionInput" type="TextEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Description"
+
+[node name="CreateButton" type="Button" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
 text = "Create Mod from Template"
+
+[node name="Export Mod" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Export Mod"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ModSelectDropdown" type="OptionButton" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
+layout_mode = 2
+
+[node name="OutputDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer" instance=ExtResource("1_2k78l")]
+layout_mode = 2
+placeholder_text = "Output Directory"
+
+[node name="MoveCheckBox" type="CheckBox" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Export to Game Mods Directory"
+
+[node name="GameModsDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer" instance=ExtResource("1_2k78l")]
+layout_mode = 2
+placeholder_text = "Game Mods Directory"
+
+[node name="ExportButton" type="Button" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Export Mod"
+
+[connection signal="pressed" from="MarginContainer/TabContainer/New Mod/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Export Mod/VBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]
