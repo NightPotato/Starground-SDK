@@ -1,6 +1,9 @@
 @tool
 extends EditorPlugin
 
+# TODO: If any part of the Mod Creation fails we need to alert the user and remove what was already created so a retry can be made.
+
+# TODO: Change this to get a example from the modding github.
 var modStruct = [
 	"res://{0}/",
 	"res://{0}/scripts",
@@ -8,6 +11,9 @@ var modStruct = [
 	"res://{0}/sprites",
 	"res://{0}/sounds"
 ]
+
+# TODO: Change this to be dynamic from the modding github
+var entryScriptContent = ""
 
 
 # TODO: Implement Logging Solutions
@@ -17,7 +23,6 @@ func _ready() -> void:
 	print("[Starground SDK] Setting Up Mod Creation Utils...")
 	var sdkTools = get_editor_interface().get_editor_main_screen().get_child(-1)
 	sdkTools.connect("create_mod", _handle_mod_creation)
-	
 	print("[Starground SDK] Finished Setting up Mod Creation utils...")
 
 
@@ -33,6 +38,7 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 	newModFiles = [] # Free the mods contents just in case.
 
 	# Create a info.json file with the correct information.
+	# TODO: Implement this to be fetched from the Modding Github.
 	var modInfoJSON = {
 		"format": 1,
 		"Script": "res://{0}/scripts/{1}.gd".format([mod_id, entry_script]),
@@ -85,7 +91,14 @@ func _create_infoJSON(path: String, contents: Dictionary):
 
 # Method to create entry_script with contents.
 func _create_populate_entry_script(path: String):
-	pass
+	var scriptFile = FileAccess.open(path, FileAccess.WRITE)
+	if scriptFile != null:
+		scriptFile.store_string(entryScriptContent)
+		scriptFile.close()
+		print("[Starground SDK] Successfully Created Mod Entry Script..")
+	else:
+		print("[Starground SDK] Mod Creation Failed. Could not create entry script. Please report this issue.")
+
 
 # Method to Handle Folder Creation
 func _create_new_folder(desiredPath):
@@ -104,11 +117,9 @@ func _create_new_folder(desiredPath):
 		else:
 			print("[Starground SDK] Failed to create directory.")
 
-
 # Method to Refresh the project structure after making edits.
 func _refresh_editor_fileSystem():
 	get_editor_interface().get_resource_filesystem().scan()
-
 
 # Helper function to pretty-print JSON data with indentation
 func pretty_print_json(data: Dictionary, indent: int = 4) -> String:
