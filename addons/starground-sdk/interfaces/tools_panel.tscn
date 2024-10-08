@@ -11,15 +11,15 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1_ws62m")
-ModNameInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/ModNameInput")
-ModIDInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/ModIDInput")
-AuthorInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/AuthorInput")
-EntryScriptInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/EntryScriptInput")
+ModNameInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer/ModNameInput")
+ModIDInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer2/ModIDInput")
+AuthorInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer3/AuthorInput")
+EntryScriptInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer4/EntryScriptInput")
 DescriptionInput = NodePath("MarginContainer/TabContainer/New Mod/VBoxContainer/DescriptionInput")
-ModSelectDropdown = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/ModSelectDropdown")
-OutputDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/OutputDirectory")
+ModSelectDropdown = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
+OutputDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer/OutputDirectory")
 MoveCheckBox = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/MoveCheckBox")
-GameModsDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/GameModsDirectory")
+GameModsDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer2/GameModsDirectory")
 ErrorDialog = NodePath("ErrorDialog")
 metadata/_edit_vertical_guides_ = [1226.0]
 
@@ -43,25 +43,70 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="ModNameInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mod Name: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="ModNameInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Mod Name"
 alignment = 1
 
-[node name="ModIDInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Mod ID: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="ModIDInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Mod ID"
 alignment = 1
 
-[node name="AuthorInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Author: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="AuthorInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Author"
 alignment = 1
 
-[node name="EntryScriptInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Entry Script: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="EntryScriptInput" type="LineEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Entry Script Location"
 alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
+layout_mode = 2
+text = "Description: "
+fit_content = true
 
 [node name="DescriptionInput" type="TextEdit" parent="MarginContainer/TabContainer/New Mod/VBoxContainer"]
 layout_mode = 2
@@ -86,12 +131,32 @@ metadata/_tab_index = 1
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="ModSelectDropdown" type="OptionButton" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Selected Mod: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="ModSelectDropdown" type="OptionButton" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="OutputDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer" instance=ExtResource("1_2k78l")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Output Directory: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="OutputDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer" instance=ExtResource("1_2k78l")]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Output Directory"
 
 [node name="MoveCheckBox" type="CheckBox" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
@@ -99,8 +164,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Move Export to Game Mods Directory"
 
-[node name="GameModsDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer" instance=ExtResource("1_2k78l")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Game Mods Directory: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="GameModsDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer2" instance=ExtResource("1_2k78l")]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Game Mods Directory"
 
 [node name="ExportButton" type="Button" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
