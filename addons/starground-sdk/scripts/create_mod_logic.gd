@@ -87,7 +87,7 @@ func _create_infoJSON(path: String, contents: Dictionary):
 
 	var file = FileAccess.open(jsonFilePath, FileAccess.WRITE)
 	if file != null:
-		file.store_string(pretty_print_json(contents))
+		file.store_string(SDKInternal.pretty_print_json(contents))
 		file.close()
 		print("[Starground SDK] Successfully Created info.json file for the Mod.")
 	else:
@@ -124,29 +124,3 @@ func _create_new_folder(desiredPath):
 # Method to Refresh the project structure after making edits.
 func _refresh_editor_fileSystem():
 	get_editor_interface().get_resource_filesystem().scan()
-
-# Helper function to pretty-print JSON data with indentation
-func pretty_print_json(data: Dictionary, indent: int = 4) -> String:
-	return _pretty_print(data, indent, 0)
-
-# Recursive function to handle indentation for nested structures
-func _pretty_print(data, indent: int, level: int) -> String:
-	var output = ""
-	if typeof(data) == TYPE_DICTIONARY:
-		output += "{\n"
-		for key in data.keys():
-			output += " ".repeat(level + indent) + "\"" + str(key) + "\": "
-			output += _pretty_print(data[key], indent, level + indent) + ",\n"
-		output = output.trim_suffix(",\n") + "\n"
-		output += " ".repeat(level) + "}"
-	elif typeof(data) == TYPE_ARRAY:
-		output += "[\n"
-		for item in data:
-			output += " ".repeat(level + indent) + _pretty_print(item, indent, level + indent) + ",\n"
-		output = output.trim_suffix(",\n") + "\n"
-		output += " ".repeat(level) + "]"
-	elif typeof(data) == TYPE_STRING:
-		output += "\"" + data + "\""
-	else:
-		output += str(data)
-	return output
