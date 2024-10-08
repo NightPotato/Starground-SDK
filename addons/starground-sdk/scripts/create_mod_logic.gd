@@ -13,7 +13,11 @@ var modStruct = [
 ]
 
 # TODO: Change this to be dynamic from the modding github
-var entryScriptContent = ""
+var entryScriptContent = "extends Node
+
+func _init() -> void:
+	## The init function is where you can integrate your mod content
+	pass"
 
 
 # TODO: Implement Logging Solutions
