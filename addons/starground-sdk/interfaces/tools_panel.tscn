@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bsmpwtn6boper" path="res://addons/starground-sdk/components/directory/directory.tscn" id="1_2k78l"]
 [ext_resource type="Script" path="res://addons/starground-sdk/interfaces/tools_panel.gd" id="1_ws62m"]
 
-[node name="ToolsPanel" type="MarginContainer" node_paths=PackedStringArray("ModNameInput", "ModIDInput", "AuthorInput", "EntryScriptInput", "DescriptionInput", "ModSelectDropdown", "OutputDirectory", "MoveCheckBox", "GameModsDirectory")]
+[node name="ToolsPanel" type="MarginContainer" node_paths=PackedStringArray("ModNameInput", "ModIDInput", "AuthorInput", "EntryScriptInput", "DescriptionInput", "ModSelectDropdown", "OutputDirectory", "MoveCheckBox", "GameModsDirectory", "ErrorDialog")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,6 +20,7 @@ ModSelectDropdown = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContai
 OutputDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/OutputDirectory")
 MoveCheckBox = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/MoveCheckBox")
 GameModsDirectory = NodePath("MarginContainer/TabContainer/Export Mod/VBoxContainer/GameModsDirectory")
+ErrorDialog = NodePath("ErrorDialog")
 metadata/_edit_vertical_guides_ = [1226.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -87,6 +88,7 @@ theme_override_constants/separation = 4
 
 [node name="ModSelectDropdown" type="OptionButton" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="OutputDirectory" parent="MarginContainer/TabContainer/Export Mod/VBoxContainer" instance=ExtResource("1_2k78l")]
 layout_mode = 2
@@ -105,6 +107,9 @@ placeholder_text = "Game Mods Directory"
 layout_mode = 2
 size_flags_vertical = 10
 text = "Export Mod"
+
+[node name="ErrorDialog" type="AcceptDialog" parent="."]
+title = "Error!"
 
 [connection signal="pressed" from="MarginContainer/TabContainer/New Mod/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TabContainer/Export Mod/VBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]
