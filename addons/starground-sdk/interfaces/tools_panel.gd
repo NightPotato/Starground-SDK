@@ -40,7 +40,7 @@ func remove_mod_from_list(mod_id: String):
 	if mod_id_index == -1:
 		return
 	mod_ids[mod_id_index] = ""
-	ModSelectDropdown.remove_item(mod_id_index)
+	ModSelectDropdown.remove_item(ModSelectDropdown.get_item_index(mod_id_index))
 
 
 func clear_mod_list():
