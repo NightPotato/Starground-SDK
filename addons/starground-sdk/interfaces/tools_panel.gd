@@ -64,6 +64,9 @@ func _on_create_button_pressed() -> void:
 		display_error("Mod ID must be a valid identifier! 
 		A valid identifier may contain only letters, digits and underscores (_), and the first character must not be a digit.")
 		return
+	if mod_id in mod_ids:
+		display_error("A Mod with this ID already exists!")
+		return
 	
 	var author = AuthorInput.text
 	if author.replace(" ", "").replace("	", "").is_empty():
@@ -76,6 +79,12 @@ func _on_create_button_pressed() -> void:
 		return
 	
 	var description = DescriptionInput.text
+	
+	ModNameInput.clear()
+	ModIDInput.clear()
+	AuthorInput.clear()
+	EntryScriptInput.clear()
+	DescriptionInput.clear()
 	
 	create_mod.emit(mod_name, mod_id, author, entry_script, description)
 
