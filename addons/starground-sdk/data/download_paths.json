@@ -1,0 +1,6 @@
+{
+    "Format": 1,
+    "Templates": {
+        "infoJSON": "https://raw.githubusercontent.com/chip003/starground-modding/refs/heads/main/templates/example_1/info.json"
+    }
+}
