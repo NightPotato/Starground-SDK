@@ -21,8 +21,10 @@ signal export_mod(mod_id: String, output_dir: String, move_check: bool, game_mod
 var mod_ids = []
 
 func _ready() -> void:
-	SDKDataUtils.clear_mod_projects()
+	clear_mod_projects()
 
+func clear_mod_projects() -> void:
+	ModSelectDropdown.clear()
 
 func display_error(error_text: String) -> void:
 	ErrorDialog.dialog_text = error_text
