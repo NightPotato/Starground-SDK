@@ -42,7 +42,7 @@ func _on_create_button_pressed() -> void:
 		display_error("Mod ID must be a valid identifier! 
 		A valid identifier may contain only letters, digits and underscores (_), and the first character must not be a digit.")
 		return
-	if mod_id in mod_ids:
+	if mod_id in SDKData.modProjects:
 		display_error("A Mod with this ID already exists!")
 		return
 
@@ -73,10 +73,10 @@ func _on_export_button_pressed() -> void:
 		return
 
 	var dropdown_id = ModSelectDropdown.get_item_id(ModSelectDropdown.selected)
-	if dropdown_id >= mod_ids.size() or mod_ids[dropdown_id] == "":
+	if dropdown_id >= SDKData.modProjects.size() or SDKData.modProjects[dropdown_id] == "":
 		display_error("Mod Not Found In Internal Dropdown List! Critical Error!")
 		return
-	var mod_id = mod_ids[dropdown_id]
+	var mod_id = SDKData.modProjects[dropdown_id]
 
 	var output_dir = OutputDirectory.current_directory
 	if output_dir.is_empty():

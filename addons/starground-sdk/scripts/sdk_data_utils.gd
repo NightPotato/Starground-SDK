@@ -47,7 +47,6 @@ func add_mod_to_project(mod_id: String) -> void:
 	else:
 		SDKData.modProjects[available_spot] = SDKData.modProjects
 	dropDown.add_item(mod_id, available_spot)
-	print("Added Item to Mod Selection")
 
 func remove_mod_from_project(mod_id: String) -> void:
 	var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
@@ -79,6 +78,5 @@ func get_modProjects_from_dir() -> Array:
 
 func populate_modProjects() -> void:
 	var mods = get_modProjects_from_dir()
-	print(mods)
 	for mod in mods:
 		add_mod_to_project(mod)
