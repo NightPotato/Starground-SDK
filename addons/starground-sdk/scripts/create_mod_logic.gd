@@ -5,11 +5,11 @@ extends EditorPlugin
 
 # TODO: Change this to get a example from the modding github.
 var modStruct = [
-	"res://{0}/",
-	"res://{0}/scripts",
-	"res://{0}/scenes",
-	"res://{0}/sprites",
-	"res://{0}/sounds"
+	"res://mods/{0}/",
+	"res://mods/{0}/scripts",
+	"res://mods/{0}/scenes",
+	"res://mods/{0}/sprites",
+	"res://mods/{0}/sounds"
 ]
 
 # TODO: Change this to be dynamic from the modding github
@@ -45,7 +45,7 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 	# TODO: Implement this to be fetched from the Modding Github.
 	var modInfoJSON = {
 		"format": 1,
-		"Script": "res://{0}/scripts/{1}.gd".format([mod_id, entry_script]),
+		"Script": "res://mods/{0}/{1}.gd".format([mod_id, entry_script]),
 		"Data": {
 			"ID": mod_id,
 			"DisplayName": mod_name,
@@ -56,10 +56,10 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 			"Dependencies": [],
 		}
 	}
-	_create_infoJSON("res://{0}/".format([mod_id]), modInfoJSON)
+	_create_infoJSON("res://mods/{0}/".format([mod_id]), modInfoJSON)
 
 	# Create the Entry Script File
-	_create_populate_entry_script("res://{0}/scripts/{1}.gd".format([mod_id, entry_script]))
+	_create_populate_entry_script("res://mods/{0}/{1}.gd".format([mod_id, entry_script]))
 
 	# Alert user that Mod Creation is complete.
 	_refresh_editor_fileSystem()
