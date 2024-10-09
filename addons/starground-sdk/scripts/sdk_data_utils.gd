@@ -2,8 +2,13 @@
 extends EditorPlugin
 
 
+var toolsPanel
 
 func _ready() -> void:
+	print("Setting Reference to toolsPanel")
+	toolsPanel = get_editor_interface().get_editor_main_screen().get_child(-1)
+
+
 	print("[Starground SDK] Loading editor data..")
 
 	var settings = load_editor_settings()
@@ -28,3 +33,37 @@ func load_editor_settings():
 	var settings = JSON.parse_string(fileContent)
 	return settings
 
+
+#
+# Mod Projects
+#
+func add_mod_to_project(mod_id: String) -> void:
+	var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
+
+	var available_spot = SDKData.modProjects.find("")
+	if available_spot == -1:
+		SDKData.modProjects.append(mod_id)
+		available_spot = SDKData.modProjects.size() - 1
+	else:
+		SDKData.modProjects[available_spot] = SDKData.modProjects
+	dropDown.add_item(mod_id, available_spot)
+	print("Added Item to Mod Selection")
+
+	dropDown.add_item()
+
+func remove_mod_from_project(mod_id: String) -> void:
+	var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
+	var mod_id_index = SDKData.modProjects.find(mod_id)
+	if mod_id_index == -1:
+		return
+	SDKData.modProjects[mod_id_index] = ""
+	dropDown.remove_item(dropDown.get_item_index(mod_id_index))
+
+func clear_mod_projects() -> void:
+	var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
+	SDKData.modProjects = []
+	dropDown.clear()
+
+func get_modProjects_from_dir():
+	# Auto-generate a list of Mod Projects from Res://mods/
+	pass

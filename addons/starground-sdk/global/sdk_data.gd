@@ -11,3 +11,5 @@ var defaultEditorSettings: Dictionary = {
 }
 
 var editorSettings: Dictionary
+var modProjects: Array
+
