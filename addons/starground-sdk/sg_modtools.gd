@@ -7,7 +7,7 @@ var log_panel: RichTextLabel
 var sdkAutoLoads = [
 	["SDKData", "res://addons/starground-sdk/global/sdk_data.gd"],
 	["SDKInternal", "res://addons/starground-sdk/scripts/sdk_internal_utils.gd"],
-	["LoggerUtils", "res://addons/starground-sdk/scripts/logger_utils.gd"],
+	# ["LoggerUtils", "res://addons/starground-sdk/scripts/logger_utils.gd"],
 	["SDKDataUtils", "res://addons/starground-sdk/scripts/sdk_data_utils.gd"],
 	["CreateModUtils", "res://addons/starground-sdk/scripts/create_mod_logic.gd"],
 	["ExportModUtils", "res://addons/starground-sdk/scripts/export_mod_logic.gd"]
