@@ -49,8 +49,6 @@ func add_mod_to_project(mod_id: String) -> void:
 	dropDown.add_item(mod_id, available_spot)
 	print("Added Item to Mod Selection")
 
-	dropDown.add_item()
-
 func remove_mod_from_project(mod_id: String) -> void:
 	var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
 	var mod_id_index = SDKData.modProjects.find(mod_id)
@@ -64,6 +62,23 @@ func clear_mod_projects() -> void:
 	SDKData.modProjects = []
 	dropDown.clear()
 
-func get_modProjects_from_dir():
-	# Auto-generate a list of Mod Projects from Res://mods/
-	pass
+# Auto-generate a list of Mod Projects from Res://mods/
+func get_modProjects_from_dir() -> Array:
+	var folder_list = []
+	var dir = DirAccess.open("res://mods/")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				folder_list.append(file_name)
+			file_name = dir.get_next()
+	else:
+		print("[Starground SDK] An error occurred when trying to access the path.")
+	return folder_list
+
+func populate_modProjects() -> void:
+	var mods = get_modProjects_from_dir()
+	print(mods)
+	for mod in mods:
+		add_mod_to_project(mod)
