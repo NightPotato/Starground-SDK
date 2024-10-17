@@ -2,8 +2,8 @@
 .godot/
 /android/
 .vscode/
-pd_test_mod/
 
-mods/test_mod/
-
-mods/pd_extended_chat/
+# SDK Files used for testing
+mods/
+Scripts/
+exports/
