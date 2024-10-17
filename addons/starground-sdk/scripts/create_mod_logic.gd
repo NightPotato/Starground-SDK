@@ -45,7 +45,7 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 	# TODO: Implement this to be fetched from the Modding Github.
 	var modInfoJSON = {
 		"format": 1,
-		"Script": "res://mods/{0}/{1}.gd".format([mod_id, entry_script]),
+		"Script": "res://{0}/{1}.gd".format([mod_id, entry_script]),
 		"Data": {
 			"ID": mod_id,
 			"DisplayName": mod_name,
@@ -64,6 +64,7 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 	# Alert user that Mod Creation is complete.
 	_refresh_editor_fileSystem()
 	print("[Starground SDK] Mod Creation Stage Complete... Have fun modding! Please report any bugs at https://github.com/NightPotato/Starground-SDK/issues")
+	SDKEvents.emit_signal("mod_created")
 
 
 
@@ -87,7 +88,7 @@ func _create_infoJSON(path: String, contents: Dictionary):
 
 	var file = FileAccess.open(jsonFilePath, FileAccess.WRITE)
 	if file != null:
-		file.store_string(SDKInternal.pretty_print_json(contents))
+		file.store_string(SDKUtils.pretty_print_json(contents))
 		file.close()
 		print("[Starground SDK] Successfully Created info.json file for the Mod.")
 	else:
