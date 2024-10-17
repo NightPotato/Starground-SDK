@@ -1,9 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
-/android/
 .vscode/
 
 # SDK Files used for testing
-mods/
-Scripts/
-exports/
+mods/*
+exports/*
+Scripts/*
