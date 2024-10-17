@@ -5,7 +5,6 @@ var toolsPanel
 
 # Load Settings for Editor on Startup.
 func _ready() -> void:
-	print("Setting Reference to toolsPanel")
 	toolsPanel = get_editor_interface().get_editor_main_screen().get_child(-1)
 	print("[Starground SDK] Loading editor data..")
 	var settings = load_editor_settings()
@@ -15,7 +14,7 @@ func _ready() -> void:
 	else:
 		SDKData.editorSettings = SDKData.defaultEditorSettings
 		save_editor_settings(SDKData.editorSettings)
-
+		
 #
 # SDK Settings Utils
 func save_editor_settings(content):
@@ -32,8 +31,6 @@ func load_editor_settings():
 # Mod Project Management Utils
 func add_mod_to_project(mod_id: String) -> void:
 	var dropDown = toolsPanel.ModSelectDropdown
-	#var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
-
 	var available_spot = SDKData.modProjects.find("")
 	if available_spot == -1:
 		SDKData.modProjects.append(mod_id)
@@ -44,7 +41,6 @@ func add_mod_to_project(mod_id: String) -> void:
 
 func remove_mod_from_project(mod_id: String) -> void:
 	var dropDown = toolsPanel.ModSelectDropdown
-	#var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
 	var mod_id_index = SDKData.modProjects.find(mod_id)
 	if mod_id_index == -1:
 		return
@@ -53,7 +49,6 @@ func remove_mod_from_project(mod_id: String) -> void:
 
 func clear_mod_projects() -> void:
 	var dropDown = toolsPanel.ModSelectDropdown
-	#var dropDown = toolsPanel.get_node("MarginContainer/TabContainer/Export Mod/VBoxContainer/HBoxContainer3/ModSelectDropdown")
 	SDKData.modProjects = []
 	dropDown.clear()
 

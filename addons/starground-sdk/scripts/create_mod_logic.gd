@@ -78,9 +78,7 @@ func _create_mod_structure_from_array(structure: Array):
 # Method to create info.json files
 func _create_infoJSON(path: String, contents: Dictionary):
 	var target_dir = DirAccess.open(path)
-	print(path)
 	var jsonFilePath =  path + "info.json"
-	print(jsonFilePath)
 
 	if target_dir == null:
 		print("[Starground SDK] Failed to open 'res://' path during mod's info.json creation. Please report this issue.")
