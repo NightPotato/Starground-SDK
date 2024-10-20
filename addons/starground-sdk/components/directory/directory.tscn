@@ -5,6 +5,7 @@
 
 [node name="Directory" type="HBoxContainer"]
 script = ExtResource("1_15g2b")
+type = null
 
 [node name="DirectoryInput" type="LineEdit" parent="."]
 layout_mode = 2

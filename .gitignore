@@ -1,5 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
-/android/
-
 .vscode/
+
+# SDK Files used for testing
+mods/*
+exports/*
+Scripts/*
+addons/script-ide/
+bin/~libgdexample.windows.template_debug.x86_64.dll

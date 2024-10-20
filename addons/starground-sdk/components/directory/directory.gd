@@ -1,6 +1,12 @@
 @tool
 class_name DirectorySelector extends HBoxContainer
 
+enum Type {
+	GAMEPATH,
+	OUTPATH,
+}
+
+@export var type: Type
 
 @export var placeholder_text: String: 
 	set(text):
@@ -29,6 +35,7 @@ func _on_open_dialog_button_pressed() -> void:
 func _on_directoy_selected(dir: String) -> void:
 	current_directory = dir
 	DirectoryInput.text = dir
+	SDKEvents.emit_signal("directory_changed", type, dir)
 
 
 func _on_directory_input_text_changed(new_text: String) -> void:
