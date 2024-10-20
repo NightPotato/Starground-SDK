@@ -13,13 +13,13 @@ func _ready() -> void:
 		SDKData.editorSettings = settings
 	else:
 		SDKData.editorSettings = SDKData.defaultEditorSettings
-		save_editor_settings(SDKData.editorSettings)
+		save_editor_settings()
 		
 #
 # SDK Settings Utils
-func save_editor_settings(content):
+func save_editor_settings():
 	var file = FileAccess.open("user://editor_settings.dat", FileAccess.WRITE)
-	file.store_string(JSON.stringify(content))
+	file.store_string(JSON.stringify(SDKData.editorSettings))
 
 func load_editor_settings():
 	var file_path = "user://editor_settings.dat"  # Define the file path
