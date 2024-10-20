@@ -33,6 +33,7 @@ enabled=PackedStringArray("res://addons/plugin_restarter/plugin.cfg", "res://add
 [file_customization]
 
 folder_colors={
+"res://Mods/": "red",
 "res://addons/": "blue",
 "res://addons/plugin_restarter/": "orange"
 }
