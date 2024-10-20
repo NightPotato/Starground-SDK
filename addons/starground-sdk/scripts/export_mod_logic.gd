@@ -10,10 +10,19 @@ func _ready() -> void:
 	sdkTools.connect("export_mod", _handle_mod_export)
 	print("[Starground SDK] Finished Setting up Mod Export utils...")
 	SDKEvents.connect("mod_created", _handle_new_mod)
+	SDKEvents.connect("directory_changed", _on_directory_changed)
 
 
 	print("[Starground SDK] Populating Mod Projects from Directory Listing...")
 	SDKUtils.populate_modProjects()
+
+func _on_directory_changed(type, dir) -> void:
+	if type == 0:
+		SDKData.editorSettings["export_game_path"] = dir
+	if type == 1:
+		SDKData.editorSettings["export_path"] = dir
+	
+	SDKUtils.save_editor_settings()
 
 func _handle_new_mod():
 	SDKUtils.populate_modProjects()
