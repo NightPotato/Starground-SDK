@@ -4,3 +4,4 @@ extends Node
 #   Only use signals that are needed.
 signal mod_created
 signal mod_exported
+signal game_start_event

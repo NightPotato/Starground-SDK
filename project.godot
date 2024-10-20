@@ -28,7 +28,7 @@ project/assembly_name="Starground-Mod-tools"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/plugin_restarter/plugin.cfg", "res://addons/starground-sdk/plugin.cfg")
+enabled=PackedStringArray("res://addons/plugin_restarter/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/starground-sdk/plugin.cfg")
 
 [file_customization]
 

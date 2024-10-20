@@ -6,3 +6,5 @@
 mods/*
 exports/*
 Scripts/*
+addons/script-ide/
+bin/~libgdexample.windows.template_debug.x86_64.dll
