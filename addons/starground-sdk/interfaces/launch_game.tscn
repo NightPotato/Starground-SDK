@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsgle4fugqwmk"]
+
+[ext_resource type="Texture2D" uid="uid://rw5q54d0c2xg" path="res://addons/starground-sdk/sprites/starground_icon.png" id="1_n0y4f"]
+
+[node name="LaunchGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = -1109.0
+offset_bottom = -606.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-416, 20)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_n0y4f")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -428.0
+offset_top = 8.0
+offset_right = -380.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_n0y4f")
