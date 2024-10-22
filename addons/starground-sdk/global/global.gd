@@ -536,7 +536,6 @@ func _ready():
 		DirAccess.make_dir_absolute("user://mods")
 
 	load_user_settings()
-	EnhancedModLoader.load_mods()
 
 	var cache = load("res://Resources/caching_table.tres")
 	cacheTable.append_array(cache.cacheTable)
