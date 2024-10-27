@@ -5,11 +5,9 @@ var toolPanel
 var sdkLoggerOutput: VBoxContainer
 var log_panel: RichTextLabel
 var sdkAutoLoads = [
-	["SDKEvents", "res://addons/starground-sdk/global/sdk_event_bus.gd"],
 	["SDKData", "res://addons/starground-sdk/global/sdk_data.gd"],
 	["SDKUtils", "res://addons/starground-sdk/scripts/sdk_utils.gd"],
-	["CreateModUtils", "res://addons/starground-sdk/scripts/create_mod_logic.gd"],
-	["ExportModUtils", "res://addons/starground-sdk/scripts/export_mod_logic.gd"]
+	["SDKCore", "res://addons/starground-sdk/scripts/sdk_core_logic.gd"]
 ]
 
 func _enter_tree() -> void:

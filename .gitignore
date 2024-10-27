@@ -5,6 +5,14 @@
 # SDK Files used for testing
 mods/*
 exports/*
-Scripts/*
-addons/script-ide/
+
+# GDExtension Related Ignores
 bin/~libgdexample.windows.template_debug.x86_64.dll
+*.TMP
+
+# Editor Plugin Ignores
+addons/script-ide/
+addons/project_file_search/
+addons/plugin_reloader/
+addons/icon_previewer/
+addons/AsepriteWizard/

@@ -35,7 +35,7 @@ func _on_open_dialog_button_pressed() -> void:
 func _on_directoy_selected(dir: String) -> void:
 	current_directory = dir
 	DirectoryInput.text = dir
-	SDKEvents.emit_signal("directory_changed", type, dir)
+	SDKData.emit_signal("directory_changed", type, dir)
 
 
 func _on_directory_input_text_changed(new_text: String) -> void:

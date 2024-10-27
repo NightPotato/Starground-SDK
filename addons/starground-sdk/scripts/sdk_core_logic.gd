@@ -1,33 +1,24 @@
 @tool
 extends EditorPlugin
 
-# TODO: If any part of the Mod Creation fails we need to alert the user and remove what was already created so a retry can be made.
-
-# TODO: Change this to get a example from the modding github.
-var modStruct = [
-	"res://mods/{0}/",
-	"res://mods/{0}/scripts",
-	"res://mods/{0}/scenes",
-	"res://mods/{0}/sprites",
-	"res://mods/{0}/sounds"
-]
-
-# TODO: Change this to be dynamic from the modding github
-var entryScriptContent = "extends Node
-
-func _init() -> void:
-	## The init function is where you can integrate your mod content
-	pass"
-
-
-# TODO: Implement Logging Solutions
-# TOOD: Make Logging per file created not mod directory based.
+var sdkTools
+var modSelector
 
 func _ready() -> void:
 	print("[Starground SDK] Setting Up Mod Creation Utils...")
 	var sdkTools = get_editor_interface().get_editor_main_screen().get_child(-1)
 	sdkTools.connect("create_mod", _handle_mod_creation)
 	print("[Starground SDK] Finished Setting up Mod Creation utils...")
+	
+	print("[Starground SDK] Setting Up Mod Export Utils...")
+	sdkTools = get_editor_interface().get_editor_main_screen().get_child(-1)
+	sdkTools.connect("export_mod", _handle_mod_export)
+	print("[Starground SDK] Finished Setting up Mod Export utils...")
+	SDKData.connect("mod_created", _handle_new_mod)
+	SDKData.connect("directory_changed", _on_directory_changed)
+
+	print("[Starground SDK] Populating Mod Projects from Directory Listing...")
+	SDKUtils.populate_modProjects()
 
 
 func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entry_script: String, description: String):
@@ -36,7 +27,7 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 
 	# Create The Folder Structure for the Mod
 	var newModFiles: Array
-	for file in modStruct:
+	for file in SDKData.modStruct:
 		newModFiles.append(file.format([mod_id]))
 	_create_mod_structure_from_array(newModFiles)
 	newModFiles = [] # Free the mods contents just in case.
@@ -64,17 +55,13 @@ func _handle_mod_creation(mod_name: String, mod_id: String, author: String, entr
 	# Alert user that Mod Creation is complete.
 	_refresh_editor_fileSystem()
 	print("[Starground SDK] Mod Creation Stage Complete... Have fun modding! Please report any bugs at https://github.com/NightPotato/Starground-SDK/issues")
-	SDKEvents.emit_signal("mod_created")
-
-
-
-
+	SDKData.emit_signal("mod_created")
+	
 # Take an Array and Creates the folders within the actual Projects FileSystem
 func _create_mod_structure_from_array(structure: Array):
 	for path in structure:
 		_create_new_folder(path)
-
-
+		
 # Method to create info.json files
 func _create_infoJSON(path: String, contents: Dictionary):
 	var target_dir = DirAccess.open(path)
@@ -96,13 +83,12 @@ func _create_infoJSON(path: String, contents: Dictionary):
 func _create_populate_entry_script(path: String):
 	var scriptFile = FileAccess.open(path, FileAccess.WRITE)
 	if scriptFile != null:
-		scriptFile.store_string(entryScriptContent)
+		scriptFile.store_string(SDKData.entryScriptContent)
 		scriptFile.close()
 		print("[Starground SDK] Successfully Created Mod Entry Script..")
 	else:
 		print("[Starground SDK] Mod Creation Failed. Could not create entry script. Please report this issue.")
-
-
+		
 # Method to Handle Folder Creation
 func _create_new_folder(desiredPath):
 	var dir = DirAccess.open("res://")
@@ -123,3 +109,24 @@ func _create_new_folder(desiredPath):
 # Method to Refresh the project structure after making edits.
 func _refresh_editor_fileSystem():
 	get_editor_interface().get_resource_filesystem().scan()
+	
+func _on_directory_changed(type, dir) -> void:
+	if type == 0:
+		SDKData.editorSettings["export_game_path"] = dir
+	if type == 1:
+		SDKData.editorSettings["export_path"] = dir
+	
+	SDKUtils.save_editor_settings()
+
+func _handle_new_mod():
+	SDKUtils.populate_modProjects()
+
+func _handle_mod_export(mod_id, output_dir, move_check, game_mods_dir) -> void:
+	_pack_mod_to_export_path(mod_id, output_dir)
+
+func _pack_mod_to_export_path(mod_id, export_path):
+	var contents = SDKUtils.get_all_file_paths("res://mods/{0}".format([mod_id]))
+	var exportPath_Mod = export_path + "/{0}.zip".format([mod_id])
+	
+	GMLCore.export_mod_project(contents, exportPath_Mod)
+	print("[Starground SDK] - Finished Packing Mod!")

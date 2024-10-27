@@ -8,6 +8,12 @@
 
 config_version=5
 
+[addons]
+
+project_file_search/character_search_limit=4
+project_file_search/included_file_formats=[".tscn", ".gd", ".cs", ".tres", ".res", ".gdshader"]
+project_file_search/keyboard_shortcut="Ctrl+,"
+
 [application]
 
 config/name="Starground-SDK"
@@ -16,13 +22,11 @@ config/icon="res://addons/starground-sdk/sprites/starground_icon.png"
 
 [autoload]
 
-SDKEvents="*res://addons/starground-sdk/global/sdk_event_bus.gd"
+Global="*res://Starground/Scripts/global.gd"
+ModAPI="*res://Starground/Scripts/mod_api.gd"
 SDKData="*res://addons/starground-sdk/global/sdk_data.gd"
 SDKUtils="*res://addons/starground-sdk/scripts/sdk_utils.gd"
-CreateModUtils="*res://addons/starground-sdk/scripts/create_mod_logic.gd"
-ExportModUtils="*res://addons/starground-sdk/scripts/export_mod_logic.gd"
-Global="*res://addons/starground-sdk/global/global.gd"
-ModAPI="*res://Starground/Scripts/mod_api.gd"
+SDKCore="*res://addons/starground-sdk/scripts/sdk_core_logic.gd"
 
 [dotnet]
 
@@ -30,12 +34,11 @@ project/assembly_name="Starground-Mod-tools"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/plugin_restarter/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/starground-sdk/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/icon_previewer/plugin.cfg", "res://addons/plugin_reloader/plugin.cfg", "res://addons/plugin_restarter/plugin.cfg", "res://addons/project_file_search/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/starground-sdk/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://Mods/": "red",
-"res://addons/": "blue",
-"res://addons/plugin_restarter/": "orange"
+"res://addons/": "blue"
 }
