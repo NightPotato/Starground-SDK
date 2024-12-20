@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsmpwtn6boper"]
+
+[ext_resource type="Script" path="res://addons/starground-sdk/components/directory/directory.gd" id="1_15g2b"]
+[ext_resource type="Texture2D" uid="uid://b4oduswvdy1dm" path="res://addons/starground-sdk/sprites/FolderBrowse.svg" id="1_5517s"]
+
+[node name="Directory" type="HBoxContainer"]
+script = ExtResource("1_15g2b")
+
+[node name="DirectoryInput" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OpenDialogButton" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("1_5517s")
+
+[connection signal="text_changed" from="DirectoryInput" to="." method="_on_directory_input_text_changed"]
+[connection signal="pressed" from="OpenDialogButton" to="." method="_on_open_dialog_button_pressed"]

@@ -14,6 +14,15 @@ config/name="Starground-SDK"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://addons/starground-sdk/sprites/starground_icon.png"
 
+[autoload]
+
+SDKLogger="*res://addons/starground-sdk/scripts/sdk_logger.gd"
+SDKData="*res://addons/starground-sdk/global/sdk_data.gd"
+SDKInternal="*res://addons/starground-sdk/scripts/sdk_internal_utils.gd"
+SDKDataUtils="*res://addons/starground-sdk/scripts/sdk_data_utils.gd"
+CreateModUtils="*res://addons/starground-sdk/scripts/create_mod_logic.gd"
+ExportModUtils="*res://addons/starground-sdk/scripts/export_mod_logic.gd"
+
 [dotnet]
 
 project/assembly_name="Starground-Mod-tools"
