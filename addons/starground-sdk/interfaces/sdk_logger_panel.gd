@@ -11,7 +11,7 @@ extends MarginContainer
 @export var SearchButton: Button
 
 
-var filter: Array[SDKLogger.MessageType] = [
+var filter: Array[SDKLoggerClass.MessageType] = [
 	SDKLogger.MessageType.INFO,
 	SDKLogger.MessageType.ERROR, 
 	SDKLogger.MessageType.WARNING,

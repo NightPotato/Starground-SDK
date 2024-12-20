@@ -1,5 +1,5 @@
 @tool
-extends Node
+class_name SDKLoggerClass extends EditorPlugin
 
 
 signal info_count_changed(new_count: int)
@@ -18,13 +18,20 @@ var current_error_count: int = 0
 var Output: RichTextLabel
 var messages: Array[Message]
 
+var sdkLoggerPanel: Control
 
 
+func _enter_tree() -> void:
+	_setup_panel()
 
 
 func _exit_tree() -> void:
 	for message in messages:
 		message.free()
+	
+	if sdkLoggerPanel:
+		remove_control_from_bottom_panel(sdkLoggerPanel)
+		sdkLoggerPanel.queue_free()
 
 
 func info(message: String) -> void:
@@ -51,6 +58,12 @@ func clear() -> void:
 	for message in messages:
 		message.free()
 	messages.clear()
+
+
+func _setup_panel() -> void:
+	sdkLoggerPanel = preload("res://addons/starground-sdk/interfaces/sdk_logger_panel.tscn").instantiate()
+	Output = sdkLoggerPanel.Output
+	add_control_to_bottom_panel(sdkLoggerPanel, "Starground SDK")
 
 
 func _add_message(text: String, type: MessageType) -> void:
